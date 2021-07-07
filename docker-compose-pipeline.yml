@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
   springapp:
-    image: udaysankarj/spring-boot-mango:1
+    image: udaysankarj/spring-boot-mongo-docker:4
     ports:
      - 8080:8080
     networks:
