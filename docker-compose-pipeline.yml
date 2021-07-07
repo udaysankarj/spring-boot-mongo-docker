@@ -1,0 +1,32 @@
+version: '3.2'
+
+services:
+  springapp:
+    image: udaysankarj/spring-boot-mango:1
+    ports:
+     - 8080:8080
+    networks:
+     - springappnetwork
+    environment:
+     - MONGO_DB_HOSTNAME=mongo
+     - MONGO_DB_USERNAME=devdb
+     - MONGO_DB_PASSWORD=devdb@123
+    container_name: springappcontainer
+
+  mongo:
+    image: mongo
+    environment:
+     - MONGO_INITDB_ROOT_USERNAME=devdb
+     - MONGO_INITDB_ROOT_PASSWORD=devdb@123
+    volumes:
+      - mongodbebsvol:/data/db
+    networks:
+     - springappnetwork
+
+volumes:
+    mongodbebsvol:
+            driver: local
+
+networks:
+  springappnetwork:
+     driver: bridge
